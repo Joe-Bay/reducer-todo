@@ -1,9 +1,11 @@
 import React from 'react'
 
-const Todo = () => {
+const Todo = (props) => {
+
+    console.log(props.todos)
     return (
         <div>
-            <h3>Here I am</h3>
+            <p>{props.todos.task}</p>
         </div>
     )
 }

@@ -1,13 +1,19 @@
-export const initialState = {
+export const initialState = [{
     task: '',
     id: '',
     completed: false
-}
+}]
 
 export const todoReducer = (todos, action) => {
     switch(action.type) {
         case "ADD_TODO":
-            return [...todos, action.todoName]
+            return [
+                ...todos,
+                {task: action.payload.task,
+                id: new Date(),
+                completed: false}
+                
+            ]
         case "TOGGLE_COMPLETED":
             return {
                 ...todos,

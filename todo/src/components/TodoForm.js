@@ -12,21 +12,28 @@ const TodoForm = (props) => {
     }
 
     const onSubmit = (e) => {
-        dispatch({ type: 'ADD_TODO', payload: { todoName: props.addTodo(inputText)}})
         e.preventDefault()
+        dispatch({ type: 'ADD_TODO', payload: { task: inputText}})
+        setInputText('')
     }
 
-
-
-
+//   const  newTodo = (todoName) => {
+//       const  theNewTodo = {
+//             task: todoName,
+//             id: new Date(),
+//             completed: false
+//         }
+//         return theNewTodo
+//     }
 
     return (
-        <form>
+        <form onSubmit={onSubmit}>
             <input 
             name='todo'
             type='text'
             placeholder='Task'
             onChange={handleChanges}
+            value={inputText}
             />
             <button>Add</button>
         </form>

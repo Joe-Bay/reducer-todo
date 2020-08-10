@@ -1,10 +1,16 @@
 import React, { useReducer } from 'react'
+import Todo from './Todo'
 
-
-const TodoList = () => {
+const TodoList = (props) => {
+    const {todos, toggleItem} = props 
     return (
         <div>
-            <h2> this is the list</h2>
+            {
+                todos.map(item => (
+                    <Todo key={item.id} todos={item} />
+                ))
+            }
+            <button>Clear Completed</button>
         </div>
     )
 }
