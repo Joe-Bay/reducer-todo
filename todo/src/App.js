@@ -6,27 +6,27 @@ import { todoReducer, initialState } from './reducers/todoReducer'
 
 function App() {
 
-  const [todos, dispatch] = useReducer(todoReducer, initialState)
 
+  const [state, dispatch] = useReducer(todoReducer, initialState)
+  
 
   const toggleItem = (id) => {
-    todos.map(item => {
-      if(item.id === id){
-        dispatch({type: "TOGGLE_COMPLETED"})
-      }
-    })
+    dispatch({type:"TOGGLE_COMPLETED", payload: id})
   }
 
+  const clearCompleted = () => {
+    dispatch({type: "CLEAR_COMPLETED_TODO"})
+  }
   
 
   return (
     <div className="App">
       <div className='header'>
         <h2>Todo List</h2>
-        <TodoForm />
+        <TodoForm dispatch={dispatch}/>
       </div>
       <div className='list'>
-        <TodoList toggleItem={toggleItem} todos={todos}/>
+        <TodoList toggle={toggleItem}clear={clearCompleted}item={state.todoArray}/>
       </div>
     </div>
   );

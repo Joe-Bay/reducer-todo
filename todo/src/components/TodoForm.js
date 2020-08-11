@@ -1,10 +1,8 @@
 import React from 'react'
 import { useState, useReducer } from 'react'
-import { initialState, todoReducer } from '../reducers/todoReducer'
+import {  todoReducer, initialState } from '../reducers/todoReducer'
 
 const TodoForm = (props) => {
-
-    const [todos, dispatch] = useReducer(todoReducer, initialState)
     const [inputText, setInputText] = useState('')
 
    const handleChanges = e => {
@@ -13,7 +11,7 @@ const TodoForm = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        dispatch({ type: 'ADD_TODO', payload: { task: inputText}})
+        props.dispatch({ type: 'ADD_TODO', payload: inputText})
         setInputText('')
     }
 
